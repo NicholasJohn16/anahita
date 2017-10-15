@@ -50,5 +50,19 @@
     $('#an-modal').bind('hidden', function () {
     	  $(this).find('.modal-footer').find('button').remove();
     });
+	
+    $('body').on('click', 'a[data-toggle="Actors"]', function(event) {
+	event.preventDefault();
+
+	var actorsModal = $('#an-modal');
+	var header = actorsModal.find('.modal-header').find('h3');
+	var body = votersModal.find('.modal-body').find('h3');
+
+	$.get($(this).attr('href'), function(response) {
+		header.html($(response).filter('modal-body').html);
+		body.html($(response).filter('.modal-body').html());
+		votersModal.modal('show');
+	});
+    });
     
 }(jQuery, window, document));
